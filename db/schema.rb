@@ -11,7 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322144822) do
+ActiveRecord::Schema.define(version: 20160408125705) do
+
+  create_table "rooms", force: :cascade do |t|
+    t.string   "home_type"
+    t.string   "room_type"
+    t.integer  "accommodate"
+    t.integer  "bed_room"
+    t.integer  "bath_room"
+    t.string   "listing_name"
+    t.text     "summary"
+    t.string   "address"
+    t.boolean  "is_tv"
+    t.boolean  "is_kitchen"
+    t.boolean  "is_air"
+    t.boolean  "is_heating"
+    t.boolean  "is_internet"
+    t.integer  "price"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "rooms", ["user_id"], name: "index_rooms_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -33,6 +56,8 @@ ActiveRecord::Schema.define(version: 20160322144822) do
     t.string   "provider"
     t.string   "uid"
     t.string   "image"
+    t.string   "phone_number"
+    t.text     "description"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
