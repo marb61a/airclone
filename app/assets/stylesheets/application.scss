@@ -187,3 +187,39 @@ input[type="checkbox"] :checked:before{
     cursor: inherit;
     display: block;
 }
+
+.panel-heading.preview {
+  padding: 0;
+}
+
+.panel-heading.preview img{  
+  width: 100%;
+}
+
+.amenities li {
+  margin-bottom: 10px;
+  list-style-type: none;
+}
+
+.text-line-through {
+  text-decoration: line-through
+}
+
+.reservation-table td {
+  width: 100%;
+  border: 1px solid #dce0e0;
+  padding: 10px;
+}
+
+.wide {
+  width: 100%;
+}
+
+.conversation {
+  color: #7f7f7f;
+  padding: 10px;
+}
+
+.conversation:hover, .conversation:focus {
+  background-color: #F4F4F5;
+}
