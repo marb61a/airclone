@@ -46,5 +46,28 @@
 <% end %>
 
 <script>
+	function unavailable(date){
+		dmy = date.getDate() + "-" + (date.getMonth()+1) + "-" + date.getFullYear();
+		return[
+			$.inArray(dmy, unavailableDates) == -1
+		]
+	}
+	
+	$(function(){
+		unavailableDates = [];
+		
+		$.ajax({
+			url : '/preload',
+			data: {'room_id': <%= @room.id %>},
+			dataType: 'json',
+			success : function(){
+				$.each(data, function(data){
+					for(var d = new Date(arrValue.start_date); d <= new Date(arrValue.end_date); d.setDate(d.getDate() + 1)){
+						unavailableDates.push($.datepicker.formatDate('d-m-yy', d));
+					}
+				})
+			}
+		})
+	})
 	
 </script>
