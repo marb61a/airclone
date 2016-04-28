@@ -36,11 +36,23 @@ class RoomsController < ApplicationController
     end
     
     def edit
-        
+        if current_user.id == @room.user.id
+            @photos = @room.photos
+        else
+            redirect_to root_path, notice: "You do not have permission" 
+        end
     end
     
     def update
-        
+        if @room.update(room_params)
+            if params[:images]
+                params[:images].each do |image|
+                    @room.photos.create(image: image)
+                end
+            end
+        else
+            render :edit
+        end
     end
     
     private

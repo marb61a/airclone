@@ -25,8 +25,17 @@ class ReservationsController < ApplicationController
         
         if @reservation
             values = {
-                
+                business: 'demo.code4startup-facilitator@gmail.com',
+				cmd: '_xclick',
+				upload: 1,
+				notify_url: 'http://22ee1588.ngrok.io/notify',
+				amount: @reservation.total,
+				item_name: @reservation.room.listing_name,
+				item_number: @reservation.id,
+				quantity: '1',
+				return: 'http://22ee1588.ngrok.io/your_trips'
             }
+            redirect_to "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
         else
             redirect_to @reservation.room, alert: "Something appears to have gone wrong" 
         end
