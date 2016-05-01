@@ -88,8 +88,29 @@
 							<%= check_box_tag "q[is_air_eq]", true %> Air Conditioning
 						</div>
                     </div>
-                    
+                    <br>
+                    <div class="row">
+                        <%= f.submit "Search", class: "btn btn-primary" %>
+                    </div>
                 <% end %>
+                
+                <hr>
+                
+                <div class="row">
+                    <%= @arrRooms.each do |room| %>
+                        <div class="col-md-6">
+							<div class="panel panel-default">
+								<div class="panel-heading preview">
+									<%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+								</div>
+								<div class="panel-body">
+									<%= link_to room.listing_name, room %>
+								</div>
+							</div>
+						</div>
+                    <% end %>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -115,5 +136,23 @@
 				$('#start_date').datepicker("option", "maxDate", selected);
 			}
 		});
+    });
+</script>
+
+<script>
+    $(function(){
+        // Document Ready
+        if(!!$('.sticky').offset()){ // Make sure that the Sticky element exists
+            var stickyTop = $('.sticky').offset().top; // Returns a number 
+            $(window).scroll(function(){ // Scroll Event
+                var windowTop = $(window).scrollTop(); // Returns a number 
+                if (stickyTop < windowTop){
+                    $('.sticky').css({ position: 'fixed', top: 0 });
+                }
+                else {
+                    $('.sticky').css('position','static');
+                }
+            });
+        }
     });
 </script>
