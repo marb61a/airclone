@@ -61,3 +61,24 @@
 </div>
 
 <br>
+
+<div class="text-center">
+	<h2>Explore the world</h2>
+	<p>See what peopel are travelling, all around the world.</p>
+</div>
+
+<br>
+
+<div class="row">
+    <% @rooms.each do |room|%>
+        <div class="panel panel-default">
+            <div class="panel-heading preview">
+				<%= image_tag room.photos[0].image.url(:medium) if room.photos.length > 0 %>
+			</div>
+			<div class="panel-body">
+				<%= image_tag avatar_url(room.user), class: "img-circle avatar-small" %>&nbsp;
+				<%= link_to room.listing_name, room %>
+			</div>
+        </div>
+    <% end %>
+</div>
